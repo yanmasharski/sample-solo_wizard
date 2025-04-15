@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour, IDamageDealer, IDamageable
     [Range(0, 1)][SerializeField] private float armor = 1;
     [SerializeField] private float speed = 10;
     [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private ParticleSystem bloodParticleSystem;
 
     private float navigationRebuildTime = 1f;
     private int health;
@@ -29,6 +30,9 @@ public class Enemy : MonoBehaviour, IDamageDealer, IDamageable
     {
         OnKilled?.Invoke(this);
         Destroy(gameObject);
+        bloodParticleSystem.transform.SetParent(null);
+        bloodParticleSystem.Emit(100);
+        Destroy(bloodParticleSystem.gameObject, 2f);
     }
 
     public void DamageDealed()
@@ -45,6 +49,7 @@ public class Enemy : MonoBehaviour, IDamageDealer, IDamageable
             Kill();
         }
 
+        bloodParticleSystem.Emit(10);
         damageDealer.DamageDealed();
     }
     private void Update()

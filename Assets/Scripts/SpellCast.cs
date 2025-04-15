@@ -7,23 +7,32 @@ public class SpellCast : IDamageDealer
     [SerializeField] private int damage = 10;
     [SerializeField] private ParticleSystem particleSystem;
     [SerializeField] private bool emitFromCollision = false;
+    [SerializeField] private float cooldownDuration = 1f;
 
+    private DateTime cooldownTime = DateTime.MinValue;
     public int Damage => damage;
+    public bool IsOnCooldown => cooldownTime > DateTime.Now;
 
     public void DamageDealed()
     {
-        // TODO: Implement cooldown
     }
 
     public void Cast(Vector3 startPosition, Vector3 direction, LayerMask layerMask)
     {
+        if (IsOnCooldown)
+        {
+            return;
+        }
+
+        cooldownTime = DateTime.Now.AddSeconds(cooldownDuration);
+        
         var hits = new RaycastHit[10];
 #if DEBUG
         Debug.DrawRay(startPosition, direction * 10f, Color.red, 5f);
 #endif
         Physics.SyncTransforms();
         // Debug.Break();
-        if (Physics.SphereCastNonAlloc(startPosition, 0.2f, direction, hits, 10f, layerMask) == 0)
+        if (Physics.SphereCastNonAlloc(startPosition, 0.1f, direction, hits, 10f, layerMask) == 0)
         {
             if (!emitFromCollision)
             {
@@ -32,6 +41,14 @@ public class SpellCast : IDamageDealer
 
             return;
         }
+
+        Array.Sort(hits, (a, b) => {
+            if (a.collider == null && b.collider == null) return 0;
+            if (a.collider == null) return 1;
+            if (b.collider == null) return -1;
+            
+            return a.distance.CompareTo(b.distance);
+        });
 
         foreach (var hit in hits)
         {
@@ -73,4 +90,5 @@ public class SpellCast : IDamageDealer
             }
         }
     }
+
 }

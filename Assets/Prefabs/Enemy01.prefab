@@ -33,6 +33,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8575980295931094757}
   - {fileID: 8679758370796023468}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -53,6 +54,7 @@ MonoBehaviour:
   armor: 0.07
   speed: 0.5
   agent: {fileID: 2638841406782703301}
+  bloodParticleSystem: {fileID: 8575980295931094762}
 --- !u!195 &2638841406782703301
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -123,6 +125,137 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!1001 &5060672456510296992
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2252344011007517926}
+    m_Modifications:
+    - target: {fileID: 3548588485384254789, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254789, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254789, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254789, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254789, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254789, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254789, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254789, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254789, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254789, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254789, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254789, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254789, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254792, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: m_Name
+      value: Blood Splash
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254794, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: EmissionModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254794, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: SizeModule.curve.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254794, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254794, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: SizeModule.y.minMaxState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254794, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: SizeModule.z.minMaxState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254794, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254794, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.20851749
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254794, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.5188679
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254794, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.056292284
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254794, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: InitialModule.startColor.minColor.b
+      value: 0.22747557
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254794, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: InitialModule.startColor.minColor.g
+      value: 0.7058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254794, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: InitialModule.startColor.minColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548588485384254794, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+      propertyPath: ClampVelocityModule.magnitude.scalar
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+--- !u!4 &8575980295931094757 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3548588485384254789, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+  m_PrefabInstance: {fileID: 5060672456510296992}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8575980295931094762 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3548588485384254794, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+  m_PrefabInstance: {fileID: 5060672456510296992}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9222821444683581767
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -178,37 +311,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 73452c6c79f95498e8709b696dce63c1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5107362848419074212}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73452c6c79f95498e8709b696dce63c1, type: 3}
---- !u!1 &8304465006350922774 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 73452c6c79f95498e8709b696dce63c1, type: 3}
-  m_PrefabInstance: {fileID: 9222821444683581767}
-  m_PrefabAsset: {fileID: 0}
---- !u!135 &5107362848419074212
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8304465006350922774}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.4
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!4 &8679758370796023468 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 73452c6c79f95498e8709b696dce63c1, type: 3}

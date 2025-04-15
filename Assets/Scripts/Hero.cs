@@ -14,6 +14,7 @@ public class Hero : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Transform spellCastPoint;
     [SerializeField] private LayerMask layerMask;
+    [SerializeField] private ParticleSystem bloodParticleSystem;
 
     private int health;
     private int spellCastIndex = 0;
@@ -91,8 +92,7 @@ public class Hero : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            spellCastIndex--;
-            spellCastIndex = spellCastIndex % spellCasts.Length;
+            spellCastIndex = spellCastIndex - 1 < 0 ? spellCasts.Length - 1 : spellCastIndex - 1;
         }
 
         if (Input.GetKeyDown(KeyCode.X))
@@ -104,13 +104,17 @@ public class Hero : MonoBehaviour
 
     private void DealDamage(IDamageDealer damageDealer)
     {
-        health -= (int)(damageDealer.Damage * armor);
+        var damage = (int)(damageDealer.Damage * armor);
+        health -= damage;
+        bloodParticleSystem.Emit(10);
         if (health <= 0)
         {
             Die();
         }
 
         damageDealer.DamageDealed();
+
+        SignalBus.Fire(new SignalHeroDamage(health, maxHealth, damage));
     }
 
     private void OnCollisionEnter(Collision other)
@@ -123,8 +127,12 @@ public class Hero : MonoBehaviour
 
     private void Die()
     {
+        bloodParticleSystem.transform.SetParent(null);
+        bloodParticleSystem.Emit(100);
+        Destroy(bloodParticleSystem.gameObject, 2f);
         Debug.Log("Hero is dead");
         Destroy(gameObject);
+
     }
 
 
