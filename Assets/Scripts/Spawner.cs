@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO: Implement emenies pool not to instantiate them every time
 public class Spawner : MonoBehaviour
 {
     private Queue<Spawner> spawners = new Queue<Spawner>();

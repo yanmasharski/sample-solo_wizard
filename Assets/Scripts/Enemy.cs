@@ -38,6 +38,7 @@ public class Enemy : MonoBehaviour, IDamageDealer, IDamageable
 
     public void ReceiveDamage(IDamageDealer damageDealer)
     {
+        Debug.Log($"ReceiveDamage {damageDealer.Damage}");
         health -= (int)(damageDealer.Damage * armor);
         if (health <= 0)
         {
@@ -48,7 +49,7 @@ public class Enemy : MonoBehaviour, IDamageDealer, IDamageable
     }
     private void Update()
     {
-        if (navigationRebuildTime <= 0)
+        if (navigationRebuildTime <= 0 && Hero.instance != null)
         {
             agent.destination = Hero.instance.position;
         }

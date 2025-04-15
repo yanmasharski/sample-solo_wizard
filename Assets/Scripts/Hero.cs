@@ -12,6 +12,8 @@ public class Hero : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private Transform spellCastPoint;
+    [SerializeField] private LayerMask layerMask;
 
     private int health;
     private int spellCastIndex = 0;
@@ -96,7 +98,7 @@ public class Hero : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X))
         {
             var spellCast = spellCasts[spellCastIndex];
-            spellCast.Cast(transform.position, transform.forward);
+            spellCast.Cast(spellCastPoint.position, spellCastPoint.forward, layerMask);
         }
     }
 

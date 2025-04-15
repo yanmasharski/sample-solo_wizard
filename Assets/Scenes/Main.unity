@@ -419,6 +419,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1843195823093572278, guid: 1afc6b9787492414b9f2376d1bb4d063, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 65
+      objectReference: {fileID: 0}
     - target: {fileID: 1961689723546975597, guid: 1afc6b9787492414b9f2376d1bb4d063, type: 3}
       propertyPath: m_Layer
       value: 3
