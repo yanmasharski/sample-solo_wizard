@@ -1,5 +1,6 @@
+using Unity.AI.Navigation;
 using UnityEngine;
-
+using UnityEngine.AI;
 public class GeneratorWorld : MonoBehaviour
 {
     [SerializeField] private GameObject[] floorPrefabs;
@@ -8,6 +9,8 @@ public class GeneratorWorld : MonoBehaviour
     [SerializeField] private GameObject[] spawnerPrefabs;
 
     [SerializeField] private Vector2Int sizeGeneration;
+
+    [SerializeField] private NavMeshSurface navMeshSurface;
 
     private void Start()
     {
@@ -31,9 +34,16 @@ public class GeneratorWorld : MonoBehaviour
                 else
                 {
                     GenerateFloor(x, y);
+
+                    if (Random.value < 0.1f)
+                    {
+                        GenerateObstacle(x, y);
+                    }
                 }
             }
         }
+
+        // navMeshSurface.BuildNavMesh();
 
     }
 
@@ -59,6 +69,14 @@ public class GeneratorWorld : MonoBehaviour
         var spawner = Instantiate(spawnerPrefabs[index]);
         spawner.transform.parent = transform;
         spawner.transform.localPosition = new Vector3(x, 0, y);
+    }
+
+    private void GenerateObstacle(int x, int y)
+    {
+        var index = Random.Range(0, obstaclePrefabs.Length);
+        var obstacle = Instantiate(obstaclePrefabs[index]);
+        obstacle.transform.parent = transform;
+        obstacle.transform.localPosition = new Vector3(x, 0, y);
     }
 
 }

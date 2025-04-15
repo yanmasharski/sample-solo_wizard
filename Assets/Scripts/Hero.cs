@@ -2,11 +2,19 @@ using UnityEngine;
 
 public class Hero : MonoBehaviour
 {
+    [SerializeField] private int maxHealth = 100;
 
+    /// <summary>
+    /// Due to the spec armor logic is inversed. Lower value means more armor.
+    /// </summary>
+    [Range(0, 1)][SerializeField] private float armor = 0.5f;
+    [SerializeField] private SpellCast[] spellCasts;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotationSpeed = 10f;
-
     [SerializeField] private Rigidbody rb;
+
+    private int health;
+    private int spellCastIndex = 0;
 
     public static Transform instance { get; private set; }
 
@@ -18,36 +26,31 @@ public class Hero : MonoBehaviour
     private void Start()
     {
         rb.freezeRotation = true;
+        health = maxHealth;
     }
 
     private void Update()
     {
         HandleMovement();
         HandleRotation();
+        HandleSpellCast();
     }
 
     private void HandleMovement()
     {
-        float horizontalInput = 0f;
-        float verticalInput = 0f;
+        float forwardInput = 0f;
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
-            horizontalInput += 1f;
+            forwardInput += 1f;
         }
-        if (Input.GetKey(KeyCode.A))
+
+        if (Input.GetKey(KeyCode.DownArrow))
         {
-            horizontalInput -= 1f;
+            forwardInput -= 1f;
         }
-        if (Input.GetKey(KeyCode.W))
-        {
-            verticalInput += 1f;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            verticalInput -= 1f;
-        }
-        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput).normalized;
+
+        var movement = transform.forward * forwardInput;
 
         if (movement != Vector3.zero)
         {
@@ -63,6 +66,7 @@ public class Hero : MonoBehaviour
         {
             rotationInput += 1f;
         }
+
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             rotationInput -= 1f;
@@ -74,4 +78,53 @@ public class Hero : MonoBehaviour
         }
 
     }
+
+    private void HandleSpellCast()
+    {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            spellCastIndex++;
+            spellCastIndex = spellCastIndex % spellCasts.Length;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            spellCastIndex--;
+            spellCastIndex = spellCastIndex % spellCasts.Length;
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            var spellCast = spellCasts[spellCastIndex];
+            spellCast.Cast(transform.position, transform.forward);
+        }
+    }
+
+    private void DealDamage(IDamageDealer damageDealer)
+    {
+        health -= (int)(damageDealer.Damage * armor);
+        if (health <= 0)
+        {
+            Die();
+        }
+
+        damageDealer.DamageDealed();
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.TryGetComponent<IDamageDealer>(out var damageDealer))
+        {
+            DealDamage(damageDealer);
+        }
+    }
+
+    private void Die()
+    {
+        Debug.Log("Hero is dead");
+        Destroy(gameObject);
+    }
+
+
+
 }

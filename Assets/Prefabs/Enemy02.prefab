@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -1758909718747763218}
   - component: {fileID: 7620783663351621703}
   - component: {fileID: -8026248843559124664}
+  - component: {fileID: 5369869460574520162}
   m_Layer: 0
   m_Name: Enemy02
   m_TagString: Untagged
@@ -47,6 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3fb750f6609b4111a6e8d8311154c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 30
+  damage: 10
+  armor: 1
+  speed: 1
   agent: {fileID: 7620783663351621703}
 --- !u!195 &7620783663351621703
 NavMeshAgent:
@@ -91,6 +96,33 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!54 &5369869460574520162
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7877604365068245562}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &8775117936316848440
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    private Queue<Spawner> spawners = new Queue<Spawner>();
     private static HashSet<Enemy> enemies = new HashSet<Enemy>();
     [SerializeField] private Enemy[] enemyPrefab;
     [SerializeField] private int maxEnemies = 10;
@@ -10,7 +11,9 @@ public class Spawner : MonoBehaviour
     private void OnEnemyKilled(Enemy enemy)
     {
         enemies.Remove(enemy);
-        TrySpawnEnemy();
+        var spawner = spawners.Dequeue();
+        spawner.TrySpawnEnemy();
+        spawners.Enqueue(spawner);
     }
 
     private void TrySpawnEnemy()
@@ -25,10 +28,8 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < maxEnemies; i++)
-        {
-            TrySpawnEnemy();
-        }
+        spawners.Enqueue(this);
+        TrySpawnEnemy();
     }
 
 
